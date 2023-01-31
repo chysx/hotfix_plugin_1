@@ -30,7 +30,7 @@ abstract class NativePlatformInterface extends PlatformInterface {
   Future runNativeMethod(String method, Map<String, dynamic> params) async {
     try {
       Map<String, dynamic> map = {"params": params};
-      var result = await const MethodChannel('HotfixPlugin_1Plugin').invokeMethod(method, map);
+      var result = await const MethodChannel('native_2').invokeMethod(method, map);
       return Future.value(result);
     } on PlatformException catch (e) {
       return Future.error(e.toString());
