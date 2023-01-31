@@ -77,9 +77,11 @@ packages:
   hotfix_plugin_1:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: "75379fdeb2d7e846888a7bbd364a23b3ecd40636"
+      url: "https://github.com/chysx/hotfix_plugin_1.git"
+    source: git
     version: "0.0.1"
   lints:
     dependency: transitive

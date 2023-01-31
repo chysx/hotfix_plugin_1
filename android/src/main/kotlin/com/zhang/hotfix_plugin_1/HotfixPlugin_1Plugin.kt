@@ -19,7 +19,7 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     context = flutterPluginBinding.applicationContext
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "native")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "HotfixPlugin_1Plugin")
     channel.setMethodCallHandler(this)
   }
 
