@@ -21,7 +21,7 @@ class MainPage extends StatelessWidget {
         appBar: AppBar(title: const Text('主界面')),
         body: Stack(
           children: [
-            Image.asset('asset/image/login/pic_dlbj@2x.png'),
+            // Image.asset('asset/image/login/pic_dlbj@2x.png'),
             Column(
               children: [
                 GestureDetector(
