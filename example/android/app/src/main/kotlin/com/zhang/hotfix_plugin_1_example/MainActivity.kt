@@ -10,4 +10,8 @@ class MainActivity: FlutterActivity() {
         PatchLoader.loadIfNeed(this, flutterShellArgs)
         return flutterShellArgs
     }
+
+    override fun getAppBundlePath(): String {
+        return PatchLoader.loadIfNeed2(this, super.getAppBundlePath())
+    }
 }

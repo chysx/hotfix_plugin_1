@@ -19,18 +19,23 @@ class MainPage extends StatelessWidget {
     MainViewModel model = ProviderUtil.of(context);
     return Scaffold(
         appBar: AppBar(title: const Text('主界面')),
-        body: Column(
+        body: Stack(
           children: [
-            GestureDetector(
-                onTap: () {
-                  model.onTapProvide(context);
-                },
-                child: _makeItem('test provide')),
-            GestureDetector(
-                onTap: () {
-                  model.onTapLoadPatch(context);
-                },
-                child: _makeItem('test load patch')),
+            Image.asset('asset/image/login/pic_dlbj@2x.png'),
+            Column(
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      model.onTapProvide(context);
+                    },
+                    child: _makeItem('test provide')),
+                GestureDetector(
+                    onTap: () {
+                      model.onTapLoadPatch(context);
+                    },
+                    child: _makeItem('test load patch')),
+              ],
+            ),
           ],
         ));
   }

@@ -45,4 +45,11 @@ object PatchLoader {
         }
     }
 
+    fun loadIfNeed2(context: Context, path: String): String{
+        if(isCanLoad(context)) {
+            return Constant.localPatchPath(context) + Constant.assetDir
+        }
+        return path
+    }
+
 }

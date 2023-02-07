@@ -18,18 +18,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-#  hotfix_plugin_1:
-    # When depending on this package from a real application you should use:
-    #   hotfix_plugin_1: ^x.y.z
-    # See https://dart.dev/tools/pub/dependencies#version-constraints
-    # The example app is bundled with the plugin so we use a path dependency on
-    # the parent directory to use the current plugin's version.
-#    path: ../
-
   hotfix_plugin_1:
-    git:
-      url: https://github.com/chysx/hotfix_plugin_1.git
-      ref: main
+#     When depending on this package from a real application you should use:
+#       hotfix_plugin_1: ^x.y.z
+#     See https://dart.dev/tools/pub/dependencies#version-constraints
+#     The example app is bundled with the plugin so we use a path dependency on
+#     the parent directory to use the current plugin's version.
+    path: ../
+
+#  hotfix_plugin_1:
+#    git:
+#      url: https://github.com/chysx/hotfix_plugin_1.git
+#      ref: main
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -56,6 +56,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - asset/image/login/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
