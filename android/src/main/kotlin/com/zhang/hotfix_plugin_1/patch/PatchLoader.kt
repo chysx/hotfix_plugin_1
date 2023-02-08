@@ -8,7 +8,7 @@ import java.io.File
 
 object PatchLoader {
     const val TAG = "PatchLoader"
-    private fun isCanLoad(context: Context): Boolean {
+    fun isCanLoad(context: Context): Boolean {
         val result = kotlin.runCatching {
             Log.e(TAG, "*************** 开始加载补丁文件 ***************")
             val patchDir = Constant.localPatchPath(context = context)

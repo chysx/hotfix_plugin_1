@@ -42,4 +42,6 @@ abstract class NativePlatformInterface extends PlatformInterface {
   Future applyPatch(PatchInfo patchInfo);
 
   Future<String> getAssetsPath();
+
+  Future<bool> isCanLoad();
 }

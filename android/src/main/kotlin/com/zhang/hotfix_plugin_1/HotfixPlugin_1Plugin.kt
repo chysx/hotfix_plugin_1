@@ -2,10 +2,7 @@ package com.zhang.hotfix_plugin_1
 
 import android.content.Context
 import androidx.annotation.NonNull
-import com.zhang.hotfix_plugin_1.patch.Constant
-import com.zhang.hotfix_plugin_1.patch.PatchDownloadService
-import com.zhang.hotfix_plugin_1.patch.PatchInfo
-import com.zhang.hotfix_plugin_1.patch.PatchInfoConstant
+import com.zhang.hotfix_plugin_1.patch.*
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -45,8 +42,13 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
       val list = FileUtil.loadPatch(context)
       result.success(list)
     }else if (call.method == "get_assets_path") {
-      val assetsPath = Constant.localPatchPath(context) + Constant.assetDir
+      var assetsPath = Constant.localPatchPath(context) + Constant.assetDir
+      // 这么处理，主要是为了减少消息通道通信次数，提高性能
+      if(!PatchLoader.isCanLoad(context)) assetsPath = "-1"
       result.success(assetsPath)
+    }else if (call.method == "is_can_load") {
+      val isCanLoad = PatchLoader.isCanLoad(context)
+      result.success(isCanLoad)
     } else {
       result.notImplemented()
     }

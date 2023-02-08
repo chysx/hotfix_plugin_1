@@ -14,4 +14,9 @@ class Patch {
   static Future<String> getAssetsPath() async{
     return await NativePlatformInterface.instance.getAssetsPath();
   }
+
+  static Future<bool> isCanLoad() async{
+    return await NativePlatformInterface.instance.isCanLoad();
+  }
+
 }

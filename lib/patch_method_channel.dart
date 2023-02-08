@@ -5,6 +5,7 @@ class PatchMethodChannel extends NativePlatformInterface {
   static const String load_patch = "load_patch";
   static const String apply_patch = "apply_patch";
   static const String get_assets_path = "get_assets_path";
+  static const String is_can_load = "is_can_load";
 
   @override
   Future<List<PatchInfo>> loadPatch() async {
@@ -56,6 +57,11 @@ class PatchMethodChannel extends NativePlatformInterface {
   @override
   Future<String> getAssetsPath() async {
     return await runNativeMethod(get_assets_path, {});
+  }
+
+  @override
+  Future<bool> isCanLoad() async {
+    return await runNativeMethod(is_can_load, {});
   }
 
 }
