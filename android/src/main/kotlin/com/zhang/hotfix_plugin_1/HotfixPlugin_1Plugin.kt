@@ -2,6 +2,7 @@ package com.zhang.hotfix_plugin_1
 
 import android.content.Context
 import androidx.annotation.NonNull
+import com.zhang.hotfix_plugin_1.patch.Constant
 import com.zhang.hotfix_plugin_1.patch.PatchDownloadService
 import com.zhang.hotfix_plugin_1.patch.PatchInfo
 import com.zhang.hotfix_plugin_1.patch.PatchInfoConstant
@@ -43,6 +44,9 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
     }else if (call.method == "load_patch") {
       val list = FileUtil.loadPatch(context)
       result.success(list)
+    }else if (call.method == "get_assets_path") {
+      val assetsPath = Constant.localPatchPath(context) + Constant.assetDir
+      result.success(assetsPath)
     } else {
       result.notImplemented()
     }

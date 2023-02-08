@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:hotfix_plugin_1/patch_asset_bundle.dart';
 import 'app_route.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(DefaultAssetBundle(
+    bundle: PatchAssetBundle(),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

@@ -15,6 +15,7 @@ private const val TAG = "PatchDownloadService"
 class PatchDownloadService : IntentService("PatchDownloadService") {
 
     override fun onHandleIntent(intent: Intent?) {
+        Log.e(TAG, "***** path = " + Constant.localPatchPath(context = this))
         val dir = getExternalFilesDir(null)?.absolutePath
         val dir2 = Environment.getExternalStorageDirectory().absolutePath
         Log.e("patch","onHandleIntent")

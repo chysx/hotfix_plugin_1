@@ -4,6 +4,7 @@ import 'package:hotfix_plugin_1/patch_info.dart';
 class PatchMethodChannel extends NativePlatformInterface {
   static const String load_patch = "load_patch";
   static const String apply_patch = "apply_patch";
+  static const String get_assets_path = "get_assets_path";
 
   @override
   Future<List<PatchInfo>> loadPatch() async {
@@ -50,6 +51,11 @@ class PatchMethodChannel extends NativePlatformInterface {
       'patchPath': patchInfo.patchPath,
     };
     return await runNativeMethod(apply_patch, params);
+  }
+
+  @override
+  Future<String> getAssetsPath() async {
+    return await runNativeMethod(get_assets_path, {});
   }
 
 }

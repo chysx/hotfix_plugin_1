@@ -10,4 +10,8 @@ class Patch {
   static Future applyPatch(PatchInfo patchInfo) async{
     return await NativePlatformInterface.instance.applyPatch(patchInfo);
   }
+
+  static Future<String> getAssetsPath() async{
+    return await NativePlatformInterface.instance.getAssetsPath();
+  }
 }

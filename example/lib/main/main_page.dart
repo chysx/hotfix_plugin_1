@@ -21,7 +21,7 @@ class MainPage extends StatelessWidget {
         appBar: AppBar(title: const Text('主界面')),
         body: Stack(
           children: [
-            // Image.asset('asset/image/login/pic_dlbj@2x.png'),
+            Image.asset('asset/image/login/pic_dlbj@2x.png'),
             Column(
               children: [
                 GestureDetector(
@@ -34,6 +34,7 @@ class MainPage extends StatelessWidget {
                       model.onTapLoadPatch(context);
                     },
                     child: _makeItem('test load patch')),
+                Image.asset('asset/image/login/pic_zxzh@2x.png'),
               ],
             ),
           ],
@@ -43,10 +44,10 @@ class MainPage extends StatelessWidget {
   Widget _makeItem(String content) {
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-      height: 60,
+      height: 160,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
-          color: Colors.blue,
+          color: Colors.yellow,
           borderRadius: BorderRadius.all(Radius.circular(8))),
       child: Text(
         content,
