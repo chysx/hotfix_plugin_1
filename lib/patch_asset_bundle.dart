@@ -21,7 +21,7 @@ class PatchAssetBundle extends PlatformAssetBundle {
     }
     final ByteData? asset;
     debugPrint("加载资源 : $assetsPath/$key");
-    if(assetsPath == "-1") {// -1表示不能加载补丁资源
+    if(!isAndroid || assetsPath == "-1") {// -1表示不能加载补丁资源
       debugPrint("直接使用系统路径加载");
       asset = await super.load(key);
     }else {
