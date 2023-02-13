@@ -19,4 +19,8 @@ class Patch {
     return await NativePlatformInterface.instance.isCanLoad();
   }
 
+  static Future<int> getBestAbiFlag() async{
+    return await NativePlatformInterface.instance.getBestAbiFlag();
+  }
+
 }

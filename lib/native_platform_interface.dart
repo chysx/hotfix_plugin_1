@@ -44,4 +44,6 @@ abstract class NativePlatformInterface extends PlatformInterface {
   Future<String> getAssetsPath();
 
   Future<bool> isCanLoad();
+
+  Future<int> getBestAbiFlag();
 }

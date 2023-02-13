@@ -15,6 +15,14 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
   private lateinit var context : Context
 
+  companion object{
+    const val apply_patch = "apply_patch"
+    const val load_patch = "load_patch"
+    const val get_assets_path = "get_assets_path"
+    const val is_can_load = "is_can_load"
+    const val get_best_abi_flag = "get_best_abi_flag"
+  }
+
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     context = flutterPluginBinding.applicationContext
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "native_2")
@@ -23,7 +31,7 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     val params = call.arguments as Map<*, *>?
-    if (call.method == "apply_patch") {
+    if (call.method == apply_patch) {
       if(params != null) {
         val map = params["params"] as Map<*, *>?
         if(map != null) {
@@ -38,15 +46,18 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
         }
       }
 
-    }else if (call.method == "load_patch") {
+    }else if (call.method == load_patch) {
       val list = FileUtil.loadPatch(context)
       result.success(list)
-    }else if (call.method == "get_assets_path") {
+    }else if (call.method == get_assets_path) {
       var assetsPath = Constant.localPatchPath(context) + Constant.assetDir
       // 这么处理，主要是为了减少消息通道通信次数，提高性能
       if(!PatchLoader.isCanLoad(context)) assetsPath = "-1"
       result.success(assetsPath)
-    }else if (call.method == "is_can_load") {
+    }else if (call.method == get_best_abi_flag) {
+      val bestAbiFlag = AppUtil.getBestAbiFlag()
+      result.success(bestAbiFlag)
+    }else if (call.method == is_can_load) {
       val isCanLoad = PatchLoader.isCanLoad(context)
       result.success(isCanLoad)
     } else {
