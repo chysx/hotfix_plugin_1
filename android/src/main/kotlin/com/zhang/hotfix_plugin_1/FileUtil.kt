@@ -1,10 +1,15 @@
 package com.zhang.hotfix_plugin_1
 
 import android.content.Context
+import android.widget.Toast
 import com.zhang.hotfix_plugin_1.patch.Constant
 import com.zhang.hotfix_plugin_1.patch.PatchInfo
 import com.zhang.hotfix_plugin_1.patch.getPatchInfoFromFile
 import java.io.*
+import java.util.*
+import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
+
 
 object FileUtil {
 
@@ -138,5 +143,55 @@ object FileUtil {
 //        }
         return result
     }
+
+    /**
+     * @param zipFile zip压缩包路径
+     * @param folderPath 解压文件存放路径
+     */
+//    fun unzipFile(zipFile: String?, folderPath: String) {
+//        try {
+//            var zfile: ZipFile? = null
+//            // 转码为GBK格式，支持中文
+//            zfile = ZipFile(zipFile)
+//            val zList: Enumeration = zfile.entries()
+//            var ze: ZipEntry? = null
+//            val buf = ByteArray(1024 * 1024)
+//            while (zList.hasMoreElements()) {
+//                ze = zList.nextElement() as ZipEntry
+//                // 列举的压缩文件里面的各个文件，判断是否为目录
+//                if (ze.isDirectory()) {
+//                    val dirstr = folderPath + ze.getName()
+//                    dirstr.trim { it <= ' ' }
+//                    val f = File(dirstr)
+//                    f.mkdir()
+//                    continue
+//                }
+//                var os: OutputStream? = null
+//                var fos: FileOutputStream? = null
+//                // ze.getName()会返回 script/start.script这样的，是为了返回实体的File
+//                val realFile: File = getRealFileName(folderPath, ze.getName())
+//                fos = FileOutputStream(realFile)
+//                os = BufferedOutputStream(fos)
+//                var `is`: InputStream? = null
+//                `is` = BufferedInputStream(zfile.getInputStream(ze))
+//                var readLen = 0
+//                // 进行一些内容复制操作
+//                while (`is`.read(buf, 0, 1024).also { readLen = it } != -1) {
+//                    os.write(buf, 0, readLen)
+//                }
+//                `is`.close()
+//                os.close()
+//            }
+//            zfile.close()
+//
+//            //解压完成后，删除压缩包文件（此处根据需要可进行删除）
+//            val file = File(zipFile)
+//            file.delete()
+//            Toast.makeText(this@MyActivity, "解压成功！", Toast.LENGTH_LONG).show()
+//        } catch (e: java.lang.Exception) {
+//            e.printStackTrace()
+//            Toast.makeText(this@MyActivity, "解压失败！", Toast.LENGTH_LONG).show()
+//        }
+//    }
 
 }

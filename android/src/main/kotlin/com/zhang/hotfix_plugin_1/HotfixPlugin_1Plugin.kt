@@ -16,6 +16,7 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
   private lateinit var context : Context
 
   companion object{
+    const val check_patch = "check_patch"
     const val apply_patch = "apply_patch"
     const val load_patch = "load_patch"
     const val get_assets_path = "get_assets_path"
@@ -46,7 +47,20 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
         }
       }
 
-    }else if (call.method == load_patch) {
+    }else if (call.method == check_patch) {
+      ConfigChecker.check(context){ patchInfo ->
+        val map = mutableMapOf<String, String>()
+        map[PatchInfoConstant.baseApkCode] = patchInfo.baseApkCode ?: ""
+        map[PatchInfoConstant.versionCode] = patchInfo.versionCode ?: ""
+        map[PatchInfoConstant.versionName] = patchInfo.versionName ?: ""
+        map[PatchInfoConstant.md5] = patchInfo.md5 ?: ""
+        map[PatchInfoConstant.patchPath] = patchInfo.patchPath ?: ""
+        map[PatchInfoConstant.des] = patchInfo.des ?: ""
+        result.success(map)
+      }
+    }
+    else if (call.method == load_patch) {
+      PatchLoader.testDownload(context,"")
       val list = FileUtil.loadPatch(context)
       result.success(list)
     }else if (call.method == get_assets_path) {

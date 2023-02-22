@@ -46,4 +46,7 @@ abstract class NativePlatformInterface extends PlatformInterface {
   Future<bool> isCanLoad();
 
   Future<int> getBestAbiFlag();
+
+  Future<PatchInfo> checkPatch();
+
 }

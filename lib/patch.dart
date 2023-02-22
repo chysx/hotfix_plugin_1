@@ -23,4 +23,8 @@ class Patch {
     return await NativePlatformInterface.instance.getBestAbiFlag();
   }
 
+  static Future<PatchInfo> checkPatch() async{
+    return await NativePlatformInterface.instance.checkPatch();
+  }
+
 }

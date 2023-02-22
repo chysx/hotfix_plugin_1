@@ -7,6 +7,7 @@ class PatchMethodChannel extends NativePlatformInterface {
   static const String get_assets_path = "get_assets_path";
   static const String is_can_load = "is_can_load";
   static const String get_best_abi_flag = "get_best_abi_flag";
+  static const String check_patch = "check_patch";
 
   @override
   Future<List<PatchInfo>> loadPatch() async {
@@ -68,6 +69,20 @@ class PatchMethodChannel extends NativePlatformInterface {
   @override
   Future<int> getBestAbiFlag() async {
     return await runNativeMethod(get_best_abi_flag, {});
+  }
+
+  @override
+  Future<PatchInfo> checkPatch() async {
+    final map = await runNativeMethod(check_patch, {}) as Map?;
+    PatchInfo patchInfo = PatchInfo();
+    if(map == null) return patchInfo;
+    patchInfo.baseApkCode = map["baseApkCode"];
+    patchInfo.versionCode = map["versionCode"];
+    patchInfo.versionName = map["versionName"];
+    patchInfo.des = map["des"];
+    patchInfo.md5 = map["md5"];
+    patchInfo.patchPath = map["patchPath"];
+    return patchInfo;
   }
 
 }

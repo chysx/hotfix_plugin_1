@@ -3,20 +3,19 @@ package com.zhang.hotfix_plugin_1.patch
 import android.content.Context
 import com.zhang.hotfix_plugin_1.FileUtil
 import com.zhang.hotfix_plugin_1.http.apiService
-import java.io.*
+import java.io.FileOutputStream
 
-
-class NetPatchDownloader: IPatchDownloader {
-    override fun download(context: Context, patchPath: String): Boolean{
+class ConfigDownloader: IPatchDownloader {
+    override fun download(context: Context, patchPath: String): Boolean {
         val result = kotlin.runCatching {
             val response =
-                apiService.downloadSo(patchPath).execute()
+                apiService.downloadConfig(patchPath).execute()
             if(response.isSuccessful) {
                 val body = response.body()
                 if(body != null){
                     FileUtil.copy(
                         body.byteStream(),
-                        FileOutputStream(Constant.localPatchPath(context) + Constant.patchTemp)
+                        FileOutputStream(Constant.localPatchPath(context) + Constant.patchInfo)
                     )
                 }else {
                     throw Exception("body 为 null")
@@ -28,5 +27,4 @@ class NetPatchDownloader: IPatchDownloader {
         result.exceptionOrNull()?.printStackTrace()
         return result.isSuccess
     }
-
 }

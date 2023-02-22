@@ -3,8 +3,15 @@ package com.zhang.hotfix_plugin_1.patch
 import android.content.Context
 import android.util.Log
 import com.zhang.hotfix_plugin_1.AppUtil
+import com.zhang.hotfix_plugin_1.FileUtil
+import com.zhang.hotfix_plugin_1.http.apiService
 import io.flutter.embedding.engine.FlutterShellArgs
+import kotlinx.coroutines.*
+import okhttp3.ResponseBody
+import retrofit2.Call
 import java.io.File
+import java.io.FileOutputStream
+import kotlin.concurrent.thread
 
 object PatchLoader {
     const val TAG = "PatchLoader"
@@ -44,5 +51,27 @@ object PatchLoader {
             flutterShellArgs.add("--aot-shared-library-name=$patchPath")
         }
     }
+
+    fun testDownload(context: Context, patchPath: String){
+//        GlobalScope.launch() {
+//            down(context)
+//        }
+
+    }
+//    suspend fun down(context: Context): Boolean{
+//        withContext(Dispatchers.IO) {
+//            val result = kotlin.runCatching {
+//                val responseBody =
+//                    apiService.downloadConfig("https://pd.test027.com/remote.php/dav/files/4BC046E1-E5B7-4C05-BECA-33ED31E51116/app/sjb/patch/libapp.so")
+//                        ?: throw Exception("responseBody 为 null")
+//                FileUtil.copy(
+//                    responseBody.byteStream(),
+//                    FileOutputStream(Constant.localPatchPath(context) + Constant.patchTemp)
+//                )
+//            }
+//            result.exceptionOrNull()?.printStackTrace()
+//            result.isSuccess
+//        }
+//    }
 
 }
