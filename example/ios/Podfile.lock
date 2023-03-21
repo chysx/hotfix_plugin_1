@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - hotfix_plugin_1 (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - hotfix_plugin_1 (from `.symlinks/plugins/hotfix_plugin_1/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  hotfix_plugin_1:
+    :path: ".symlinks/plugins/hotfix_plugin_1/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  hotfix_plugin_1: d0bb61037e2cb19cfdc400c9cb7bde88c8ddff0f
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.3
