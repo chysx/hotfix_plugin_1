@@ -3,6 +3,7 @@ package com.zhang.hotfix_plugin_1.patch
 import android.content.Context
 import android.util.Log
 import com.zhang.hotfix_plugin_1.FileUtil
+import com.zhang.hotfix_plugin_1.patch.download.ConfigDownloader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -10,7 +11,7 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 object ConfigChecker {
-    const val TAG = "ConfigChecker"
+    private const val TAG = "ConfigChecker"
 
     fun check(context: Context, callback: (PatchInfo) -> Unit){
         val configDownloader = ConfigDownloader()

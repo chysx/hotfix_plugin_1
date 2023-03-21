@@ -60,7 +60,6 @@ class HotfixPlugin_1Plugin: FlutterPlugin, MethodCallHandler {
       }
     }
     else if (call.method == load_patch) {
-      PatchLoader.testDownload(context,"")
       val list = FileUtil.loadPatch(context)
       result.success(list)
     }else if (call.method == get_assets_path) {

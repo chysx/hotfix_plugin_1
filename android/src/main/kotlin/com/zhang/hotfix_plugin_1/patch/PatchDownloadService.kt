@@ -7,6 +7,8 @@ import android.os.Environment
 import android.util.Log
 import com.zhang.hotfix_plugin_1.FileUtil
 import com.zhang.hotfix_plugin_1.Md5Util
+import com.zhang.hotfix_plugin_1.patch.download.AssetsPatchDownloader
+import com.zhang.hotfix_plugin_1.patch.download.PatchDownloaderFactory
 import java.io.File
 
 private const val EXTRA_PATCH_INFO = "extra_patch_info"
@@ -35,15 +37,28 @@ class PatchDownloadService : IntentService("PatchDownloadService") {
             .download(this, patchPathType.patchPath)
         if(!isSuccess) return
         Log.e(TAG, "***** 5. 补丁文件下载成功")
+        val isNeedDownloadAssets = true // todo
+        if(isNeedDownloadAssets) {
+            val assetPatchPatch = getAssetsPath(patchPathType.patchPath)
+            if(assetPatchPatch.isNotEmpty()) {
+                Log.e(TAG, "***** 6. 下载并解压资源文件flutter_assets.zip")
+                val isOk = AssetsPatchDownloader().download(this, assetPatchPatch)
+                if(!isOk) return
+                Log.e(TAG, "***** 7. 资源文件flutter_assets.zip下载并解压成功")
+            }
+        }
         val patchInfoPathTemp = Constant.localPatchPath(this) + Constant.patchInfoTemp
         val patchPathTemp = Constant.localPatchPath(this) + Constant.patchTemp
-        Log.e(TAG, "***** 6. 校验md5")
+        Log.e(TAG, "***** 8. 校验md5")
         if(patchInfo.md5 != Md5Util.getMD5(patchPathTemp)) {
             File(patchInfoPathTemp).delete()
             File(patchPathTemp).delete()
+            if(isNeedDownloadAssets) {
+                File(getAssetsPath(patchPathType.patchPath)).deleteOnExit()
+            }
             return
         }
-        Log.e(TAG, "***** 7. 旧补丁删除和新补丁文件重命名")
+        Log.e(TAG, "***** 9. 旧补丁删除和新补丁文件重命名")
         val patchInfoPath = Constant.localPatchPath(this) + Constant.patchInfo
         val patchFilePath = Constant.localPatchPath(this) + Constant.patchFile
         File(patchInfoPath).delete()
@@ -52,6 +67,12 @@ class PatchDownloadService : IntentService("PatchDownloadService") {
         File(patchPathTemp).renameTo(File(patchFilePath))
         Log.e(TAG, "*************** 结束下载补丁文件 ***************")
 
+    }
+
+    private fun getAssetsPath(patchPath: String): String{
+        val index = patchPath.lastIndexOf("/")
+        return if(index != -1) patchPath.substring(0, index + 1) + Constant.assetZip
+        else ""
     }
 
     private fun writeToPatchInfoTemp(patchInfo: PatchInfo) {

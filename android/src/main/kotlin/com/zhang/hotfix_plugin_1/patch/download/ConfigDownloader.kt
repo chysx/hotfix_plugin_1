@@ -1,8 +1,9 @@
-package com.zhang.hotfix_plugin_1.patch
+package com.zhang.hotfix_plugin_1.patch.download
 
 import android.content.Context
 import com.zhang.hotfix_plugin_1.FileUtil
 import com.zhang.hotfix_plugin_1.http.apiService
+import com.zhang.hotfix_plugin_1.patch.Constant
 import java.io.FileOutputStream
 
 class ConfigDownloader: IPatchDownloader {

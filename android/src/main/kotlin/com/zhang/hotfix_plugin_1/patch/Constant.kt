@@ -11,6 +11,7 @@ object Constant {
     const val patchFile = "libapp.so"
     const val patchTemp = "patchTemp.wy"
     const val assetDir = "flutter_assets/"
+    const val assetZip = "flutter_assets.zip"
     fun localPatchPath(context: Context): String {
         // android N 对应的是7，发布于2016-08-01，补丁包不支持Android7
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.N) return ""

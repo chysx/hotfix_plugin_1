@@ -11,8 +11,8 @@ class PatchViewModel extends ChangeNotifier {
 
   loadPatchData() async {
     // patchInfoList = await Patch.loadPatch();
-    // patchInfoList = await Patch.loadPatch();
-    patchInfoList.add(await Patch.checkPatch());
+    patchInfoList = await Patch.loadPatch();
+    // patchInfoList.add(await Patch.checkPatch());
     notifyListeners();
   }
 

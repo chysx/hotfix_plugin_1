@@ -1,6 +1,9 @@
-package com.zhang.hotfix_plugin_1.patch
+package com.zhang.hotfix_plugin_1.patch.download
 
 import android.content.Context
+import com.zhang.hotfix_plugin_1.patch.FilePatch
+import com.zhang.hotfix_plugin_1.patch.PatchPathType
+import com.zhang.hotfix_plugin_1.patch.UrlPatch
 
 interface IPatchDownloader {
     fun download(context: Context, patchPath: String): Boolean

@@ -1,4 +1,4 @@
-package com.zhang.hotfix_plugin_1.patch
+package com.zhang.hotfix_plugin_1.patch.download
 
 import android.content.Context
 
