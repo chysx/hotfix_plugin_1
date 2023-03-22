@@ -13,25 +13,30 @@ class PatchAssetBundle extends PlatformAssetBundle {
   Future<ByteData> load(String key) async {
     if(isAndroid && assetsPath == null){
       try{
-        debugPrint("获取asset资源路径");
+        // debugPrint("获取asset资源路径");
+        print("获取asset资源路径");
         assetsPath = await Patch.getAssetsPath();
       }catch(e){
         isAndroid = false;
       }
     }
     final ByteData? asset;
-    debugPrint("加载资源 : $assetsPath/$key");
+    // debugPrint("加载资源 : $assetsPath/$key");
+    print("加载资源 : $assetsPath/$key");
     if(!isAndroid || assetsPath == "-1") {// -1表示不能加载补丁资源
+      // debugPrint("直接使用系统路径加载");
       debugPrint("直接使用系统路径加载");
       asset = await super.load(key);
     }else {
       File file = File("$assetsPath/$key");
       if(file.existsSync()){
-        debugPrint("加载成功 ${file.path}");
+        // debugPrint("加载成功 ${file.path}");
+        print("加载成功 ${file.path}");
         Uint8List bytes = await file.readAsBytes();
         asset = bytes.buffer.asByteData();
       }else{
-        debugPrint("加载失败，使用系统路径加载");
+        // debugPrint("加载失败，使用系统路径加载");
+        print("加载失败，使用系统路径加载");
         asset = await super.load(key);
       }
     }
